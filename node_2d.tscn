@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://du7frl7uuq2bp"]
+
+[ext_resource type="Texture2D" uid="uid://doghmovcgeltw" path="res://graphics3/map.png" id="1_wtcfe"]
+[ext_resource type="PackedScene" uid="uid://bjy1c24lq0gf7" path="res://player.tscn" id="2_0e48y"]
+
+[node name="Node2D" type="Node2D" unique_id=1581558134]
+metadata/_edit_horizontal_guides_ = [-319.0]
+
+[node name="Map" type="Sprite2D" parent="." unique_id=594646610]
+texture = ExtResource("1_wtcfe")
+
+[node name="Player" parent="." unique_id=1273051383 instance=ExtResource("2_0e48y")]
+position = Vector2(25, 37)
