@@ -15,14 +15,20 @@ func _on_area_entered(area):
 				0:
 					collision.call_deferred("set", "disabled", true)
 					disableTimer.start()
-				1:
+				1: 
 					pass
-				2:
+				2: 
 					if area.has_method("tempdisable"):
 						area.tempdisable()
 			var damage = area.damage
 			emit_signal("hurt", damage)
 
 
-func _on_disable_timer_timeout() -> void:
+
+
+
+
+
+
+func _on_disable_timer_timeout():
 	collision.call_deferred("set", "disabled", false)

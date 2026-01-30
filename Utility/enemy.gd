@@ -34,6 +34,9 @@ func _physics_process(_delta):
 		velocity = velocity.lerp(target_velocity, 0.15)
 	move_and_slide()
 	animation()   
+	
+	
+	
 
 func animation():
 	if velocity:
@@ -49,3 +52,10 @@ func animation():
 			$AnimatedSprite2D.frame = 0
 	else:
 		$AnimatedSprite2D.frame = 0
+
+
+func _on_hurtbox_hurt(damage):
+	hp -= damage
+	if hp <= 0:
+		queue_free()
+	
