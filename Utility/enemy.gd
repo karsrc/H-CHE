@@ -2,10 +2,8 @@ extends CharacterBody2D
 
 @export var speed = 85.0
 @export var aggro_range = 600
-@export var ok_range = 15
 @export var hp = 10
 @onready var player = get_tree().get_first_node_in_group("player")
-
 
 var target_velocity = Vector2.ZERO
 
@@ -19,24 +17,21 @@ func _ready():
 	
 
 func _physics_process(_delta):
+	if player == null:
+		return
+	
 	collision_layer = 2
 	var offset = player.global_position - global_position
-	var direction = offset.normalized()
 	var distance = offset.length()
 	
-	var target_velocity = Vector2.ZERO
-	
 	if distance < aggro_range:
-		var desired_position = player.global_position - direction * ok_range
-		var desired_direction = (desired_position - global_position).normalized()
-
-		target_velocity = desired_direction * speed
-		velocity = velocity.lerp(target_velocity, 0.15)
+		var direction = offset.normalized()
+		velocity = direction * speed
+	else:
+		velocity = Vector2.ZERO
+	
 	move_and_slide()
 	animation()   
-	
-	
-	
 
 func animation():
 	if velocity:
@@ -52,7 +47,6 @@ func animation():
 			$AnimatedSprite2D.frame = 0
 	else:
 		$AnimatedSprite2D.frame = 0
-
 
 func _on_hurtbox_hurt(damage):
 	hp -= damage

@@ -30,9 +30,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4gyqm"]
-size = Vector2(6, 8)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iifgy"]
 size = Vector2(8, 8)
 
@@ -45,11 +42,6 @@ script = ExtResource("1_epg4t")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=892552969]
 sprite_frames = SubResource("SpriteFrames_epg4t")
 animation = &"right"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=268850245]
-position = Vector2(0, 6)
-shape = SubResource("RectangleShape2D_4gyqm")
-one_way_collision_margin = 9.7
 
 [node name="Hitbox" parent="." unique_id=629872260 instance=ExtResource("3_epg4t")]
 collision_layer = 2
