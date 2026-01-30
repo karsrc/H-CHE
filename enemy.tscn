@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://ddt0hp7dt5svg"]
 
-[ext_resource type="Script" uid="uid://1ygnjncdwiem" path="res://enemy.gd" id="1_7k104"]
+[ext_resource type="Script" uid="uid://c5wfk3mt7s680" path="res://Utility/enemy.gd" id="1_epg4t"]
+[ext_resource type="Script" uid="uid://b70gfr2dqbl4g" path="res://Utility/hitbox.gd" id="1_iifgy"]
 [ext_resource type="Texture2D" uid="uid://drox00paca5no" path="res://ASSETS/sprites/slime_green.png" id="2_4gyqm"]
+[ext_resource type="PackedScene" uid="uid://cmspexdobuqbl" path="res://Utility/hitbox.tscn" id="3_epg4t"]
+[ext_resource type="PackedScene" uid="uid://b4gs0mcgm3c8n" path="res://Utility/hurtbox.tscn" id="3_qi2p4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qi2p4"]
 atlas = ExtResource("2_4gyqm")
@@ -31,8 +34,11 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4gyqm"]
 size = Vector2(14, 14)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iifgy"]
+size = Vector2(14, 14)
+
 [node name="Enemy1" type="CharacterBody2D" unique_id=1428814856]
-script = ExtResource("1_7k104")
+script = ExtResource("1_epg4t")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=892552969]
 sprite_frames = SubResource("SpriteFrames_epg4t")
@@ -41,3 +47,21 @@ animation = &"right"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=268850245]
 position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_4gyqm")
+
+[node name="Hurtbox" parent="." unique_id=2070832890 instance=ExtResource("3_qi2p4")]
+visible = false
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0" unique_id=315600310]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_iifgy")
+
+[node name="Hitbox" parent="." unique_id=629872260 instance=ExtResource("3_epg4t")]
+script = ExtResource("1_iifgy")
+damage = 1
+hp = 1
+
+[connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
+
+[editable path="Hurtbox"]

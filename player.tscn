@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bpf61kdirs6ek" path="res://player.gd" id="1_i3pqv"]
 [ext_resource type="Texture2D" uid="uid://c4q6c7mxqh78h" path="res://graphics3/player/player_tileset.png" id="2_onrkg"]
+[ext_resource type="PackedScene" uid="uid://b4gs0mcgm3c8n" path="res://Utility/hurtbox.tscn" id="3_i3pqv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i3pqv"]
 size = Vector2(12, 10)
@@ -125,6 +126,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hqtel"]
+size = Vector2(7.5, 11)
+
 [node name="Player" type="CharacterBody2D" unique_id=1584309605 groups=["player"]]
 script = ExtResource("1_i3pqv")
 
@@ -144,3 +148,15 @@ shape = SubResource("RectangleShape2D_i3pqv")
 sprite_frames = SubResource("SpriteFrames_2hs0m")
 animation = &"left"
 autoplay = "down"
+
+[node name="Hurtbox" parent="." unique_id=2070832890 instance=ExtResource("3_i3pqv")]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0" unique_id=315600310]
+position = Vector2(0.25, 0.5)
+shape = SubResource("RectangleShape2D_hqtel")
+
+[connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
+
+[editable path="Hurtbox"]

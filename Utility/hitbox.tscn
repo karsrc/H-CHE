@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cmspexdobuqbl"]
+
+[ext_resource type="Script" uid="uid://b70gfr2dqbl4g" path="res://Utility/hitbox.gd" id="1_mlvce"]
+
+[node name="Hitbox" type="Area2D" unique_id=629872260]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_mlvce")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=409766603 groups=["attack"]]
+
+[node name="DisableHitBoxTimer" type="Timer" parent="." unique_id=125908378]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="DisableHitBoxTimer" to="." method="_on_disable_hit_box_timer_timeout"]
