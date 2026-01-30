@@ -19,34 +19,43 @@ func _ready():
 func _physics_process(_delta):
 	if player == null:
 		return
-	
+
 	collision_layer = 2
 	var offset = player.global_position - global_position
 	var distance = offset.length()
-	
+
+	var stop_distance = 5.0  
+
 	if distance < aggro_range:
-		var direction = offset.normalized()
-		velocity = direction * speed
+		if distance > stop_distance:
+			var direction = offset.normalized()
+			velocity = direction * speed
+		else:
+			velocity = Vector2.ZERO
 	else:
 		velocity = Vector2.ZERO
-	
+
 	move_and_slide()
-	animation()   
+	animation()
 
 func animation():
-	if velocity:
-		if velocity.x > 0:
-			$AnimatedSprite2D.flip_h = false
+	if velocity.length() < 1:
+		$AnimatedSprite2D.stop()
+		$AnimatedSprite2D.frame = 0
+		return
+
+	if abs(velocity.x) > abs(velocity.y):
+		$AnimatedSprite2D.flip_h = velocity.x < 0
+		if not $AnimatedSprite2D.is_playing():
 			$AnimatedSprite2D.play("right")
-		elif velocity.x < 0:
-			$AnimatedSprite2D.flip_h = true
-			$AnimatedSprite2D.play("right")
-		elif velocity.y < 0:
+	else:
+		$AnimatedSprite2D.stop()
+		if velocity.y < 0:
 			$AnimatedSprite2D.frame = 0
 		else:
 			$AnimatedSprite2D.frame = 0
-	else:
-		$AnimatedSprite2D.frame = 0
+
+
 
 func _on_hurtbox_hurt(damage):
 	hp -= damage
