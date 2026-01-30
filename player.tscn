@@ -2,14 +2,20 @@
 
 [ext_resource type="Script" uid="uid://bpf61kdirs6ek" path="res://player.gd" id="1_i3pqv"]
 [ext_resource type="Texture2D" uid="uid://bkgrir378horu" path="res://graphics3/player/player_simple.png" id="2_hqtel"]
-[ext_resource type="Script" uid="uid://dwp18jedsc60v" path="res://animated_sprite_2d.gd" id="3_sweqy"]
 
-[node name="Player" type="Node2D" unique_id=1273051383]
+[sub_resource type="GDScript" id="GDScript_onrkg"]
+script/source = "extends Node2D
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i3pqv"]
+size = Vector2(12, 10)
+
+[node name="Player" type="CharacterBody2D" unique_id=1584309605]
 script = ExtResource("1_i3pqv")
 
 [node name="AnimatedSprite2D" type="Sprite2D" parent="." unique_id=1745217764]
 texture = ExtResource("2_hqtel")
-script = ExtResource("3_sweqy")
+script = SubResource("GDScript_onrkg")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1716658480]
 zoom = Vector2(4, 4)
@@ -19,3 +25,6 @@ limit_right = 192
 limit_bottom = 319
 limit_smoothed = true
 position_smoothing_enabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=862782021]
+shape = SubResource("RectangleShape2D_i3pqv")
