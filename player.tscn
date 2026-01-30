@@ -125,7 +125,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="CharacterBody2D" unique_id=1584309605]
+[node name="Player" type="CharacterBody2D" unique_id=1584309605 groups=["player"]]
 script = ExtResource("1_i3pqv")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1716658480]
@@ -142,5 +142,5 @@ shape = SubResource("RectangleShape2D_i3pqv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1500273619]
 sprite_frames = SubResource("SpriteFrames_2hs0m")
-animation = &"down"
+animation = &"left"
 autoplay = "down"

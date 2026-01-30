@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://du7frl7uuq2bp"]
 
+[ext_resource type="Script" uid="uid://brf5kobae433v" path="res://node_2d.gd" id="1_0hol4"]
 [ext_resource type="Texture2D" uid="uid://doghmovcgeltw" path="res://graphics3/map.png" id="1_wtcfe"]
 [ext_resource type="PackedScene" uid="uid://bjy1c24lq0gf7" path="res://player.tscn" id="2_0e48y"]
 [ext_resource type="PackedScene" uid="uid://kxygjnktxlox" path="res://tree_1.tscn" id="3_epypp"]
+[ext_resource type="PackedScene" uid="uid://ddt0hp7dt5svg" path="res://enemy.tscn" id="5_q6r6c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0hol4"]
 size = Vector2(386.5, 20)
@@ -16,7 +18,11 @@ size = Vector2(28.5, 652)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kdubu"]
 size = Vector2(394, 10)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_epypp"]
+radius = 35.128338
+
 [node name="Game" type="Node2D" unique_id=1581558134]
+script = ExtResource("1_0hol4")
 metadata/_edit_horizontal_guides_ = [-319.0, -319.0]
 
 [node name="Map" type="Sprite2D" parent="." unique_id=594646610]
@@ -28,28 +34,44 @@ position = Vector2(117, 209)
 [node name="Player" parent="." unique_id=1273051383 instance=ExtResource("2_0e48y")]
 position = Vector2(25, 37)
 
-[node name="Node2D" type="Node2D" parent="." unique_id=1101596710]
+[node name="Borders" type="Node2D" parent="." unique_id=1101596710]
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="Node2D" unique_id=2098534824]
+[node name="StaticBody2D2" type="StaticBody2D" parent="Borders" unique_id=2098534824]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D2" unique_id=713570406]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticBody2D2" unique_id=713570406]
 position = Vector2(1.75, -330)
 shape = SubResource("RectangleShape2D_0hol4")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Node2D" unique_id=185688]
+[node name="StaticBody2D" type="StaticBody2D" parent="Borders" unique_id=185688]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D" unique_id=673300192]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticBody2D" unique_id=673300192]
 position = Vector2(-210.5, -36.5)
 shape = SubResource("RectangleShape2D_epypp")
 
-[node name="StaticBody2D3" type="StaticBody2D" parent="Node2D" unique_id=1689453827]
+[node name="StaticBody2D3" type="StaticBody2D" parent="Borders" unique_id=1689453827]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D3" unique_id=171117431]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticBody2D3" unique_id=171117431]
 position = Vector2(205.75, 0)
 shape = SubResource("RectangleShape2D_q6r6c")
 
-[node name="StaticBody2D4" type="StaticBody2D" parent="Node2D" unique_id=720250285]
+[node name="StaticBody2D4" type="StaticBody2D" parent="Borders" unique_id=720250285]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D4" unique_id=1954371956]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticBody2D4" unique_id=1954371956]
 position = Vector2(4, 325)
 shape = SubResource("RectangleShape2D_kdubu")
+
+[node name="Flag" type="Area2D" parent="." unique_id=2069333526]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Flag" unique_id=1802307583]
+position = Vector2(-95, 63)
+shape = SubResource("CircleShape2D_epypp")
+
+[node name="Enemy1" parent="Flag" unique_id=1428814856 instance=ExtResource("5_q6r6c")]
+position = Vector2(-65, -57)
+
+[node name="Timer" type="Node2D" parent="." unique_id=764810591]
+
+[node name="EnemyTimer" type="Timer" parent="Timer" unique_id=530871752]
+wait_time = 10.0
+
+[connection signal="body_shape_entered" from="Flag" to="." method="_on_area_2d_body_shape_entered"]
