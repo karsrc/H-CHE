@@ -28,8 +28,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_4gyqm"]
-radius = 5.0990195
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4gyqm"]
+size = Vector2(14, 14)
 
 [node name="Enemy1" type="CharacterBody2D" unique_id=1428814856]
 script = ExtResource("1_7k104")
@@ -39,5 +39,5 @@ sprite_frames = SubResource("SpriteFrames_epg4t")
 animation = &"right"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=268850245]
-position = Vector2(0, 6)
-shape = SubResource("CircleShape2D_4gyqm")
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_4gyqm")

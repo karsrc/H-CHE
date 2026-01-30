@@ -31,6 +31,9 @@ texture = ExtResource("1_wtcfe")
 [node name="Tree1" parent="." unique_id=314454689 instance=ExtResource("3_epypp")]
 position = Vector2(117, 209)
 
+[node name="Enemy1" parent="." unique_id=1428814856 instance=ExtResource("5_q6r6c")]
+position = Vector2(-65, -57)
+
 [node name="Player" parent="." unique_id=1273051383 instance=ExtResource("2_0e48y")]
 position = Vector2(25, 37)
 
@@ -65,9 +68,6 @@ shape = SubResource("RectangleShape2D_kdubu")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Flag" unique_id=1802307583]
 position = Vector2(-95, 63)
 shape = SubResource("CircleShape2D_epypp")
-
-[node name="Enemy1" parent="Flag" unique_id=1428814856 instance=ExtResource("5_q6r6c")]
-position = Vector2(-65, -57)
 
 [node name="Timer" type="Node2D" parent="." unique_id=764810591]
 
