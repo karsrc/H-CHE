@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed = 85.0
+@export var speed = 35.0
 @export var aggro_range = 600
 @export var hp = 10
 @onready var player = get_tree().get_first_node_in_group("player")
